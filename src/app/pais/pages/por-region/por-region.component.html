@@ -1,1 +1,41 @@
-<p>por-region works!</p>
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h3>Buscar por region: <small> {{regionActiva | titlecase }} </small></h3>
+  <hr>
+
+  <h5>Seleccione la region</h5>
+
+  <div class="row">
+    <div class="col">
+      <button *ngFor="let region of regiones"
+              [class]="getClaseCss( region )"
+              (click)="activarRegion(region)"
+      >
+        {{ region | titlecase }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="hayError"
+       class="alert alert-danger">
+    No se encontro nada en: {{regionActiva}}
+  </div>
+
+  <div *ngIf="!hayError || paises.length!=0" class="row">
+    <div class="col">
+      <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+  </div>
+
+</div>
+<!--https://www.udemy.com/course/angular-fernando-herrera/learn/lecture/23753668#questions-->
+<!--1 forma de condicionar css-->
+<!--[class.btn-success]="region === regionActiva"-->
+
+<!--2 forma de condicionar css-->
+<!--[ngClass]="{-->
+<!--'btn-success': regionActiva === region,-->
+<!--'btn-outline-success': regionActiva !== region-->
+<!--}"-->
+
+<!--3-->
+<!--[class]="(region === regionActiva) ? 'btn btn-primary': 'btn btn-outline-primary'"-->
